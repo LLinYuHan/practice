@@ -9,6 +9,7 @@ function promiseAll(promises) {
         let completedCount = promises.length;
 
         promises.forEach((promise, index) => {
+            // 将 Promise 转化为 resolved 状态
             Promise.resolve(promise)
                 .then(result => {
                     results[index] = result;
