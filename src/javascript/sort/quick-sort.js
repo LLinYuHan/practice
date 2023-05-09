@@ -22,5 +22,5 @@ function quickSort(arr) {
     }
     
     // 递归地对左右两部分进行快速排序，并将结果合并
-    return quickSort(left).concat(pivot, quickSort(right));
+    return [...quickSort(left), pivot, ...quickSort(right)];
 }
