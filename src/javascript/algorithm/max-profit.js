@@ -4,6 +4,8 @@
  */
 
 /**
+ * 最佳时机 I
+ * 
  * @param {number[]} prices
  * @return {number}
  */
@@ -20,3 +22,22 @@ function maxProfit(prices) {
     }
     return max;
 }
+
+/**
+ * 最佳时机 II
+ * 
+ * @param {number[]} prices
+ * @return {number}
+ */
+function maxProfitII(prices) {
+    let maxProfit = 0;
+    for (let i = 1; i < prices.length; i++) {
+        if (prices[i] > prices[i - 1]) {
+            maxProfit += prices[i] - prices[i - 1];
+        }
+    }
+    return maxProfit;
+}
+
+
+
