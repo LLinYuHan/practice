@@ -42,3 +42,48 @@ function reverseList(head) {
     }
     return newHead;
 }
+
+/**
+ * 反转链表 II
+ */
+var reverseBetween = function (head, left, right) {
+    const dummyNode = new ListNode(-1);
+    dummyNode.next = head;
+
+    let pre = dummyNode;
+
+    for (let i = 0; i < left - 1; i++) {
+        pre = pre.next;
+    }
+
+    let rightNode = pre;
+    for (let i = 0; i < right - left + 1; i++) {
+        rightNode = rightNode.next;
+    }
+
+    let leftNode = pre.next;
+    let curr = rightNode.next;
+
+    pre.next = null;
+    rightNode.next = null;
+
+    let reverse = (head) => {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        let next = head.next;
+        head.next = null;
+
+        let newHead = reverse(next);
+        next.next = head;
+        return newHead;
+    }
+
+    let newHead = reverse(leftNode);
+
+    pre.next = newHead;
+    leftNode.next = curr;
+
+    return dummyNode.next;
+};
