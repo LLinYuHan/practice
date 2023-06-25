@@ -3,6 +3,28 @@
  * @author linyuhan
  */
 
+
+/**
+ * 前序遍历
+ */
+
+var preorderTraversal = function (root) {
+    let ans = [];
+    let res = [];
+    let cur = root;
+
+    while (cur !== null || ans.length) {
+        while (cur !== null) {
+            res.push(cur.val);
+            ans.push(cur);
+            cur = cur.left;
+        }
+        cur = ans.pop();
+        cur = cur.right;
+    }
+    return res;
+};
+
 /**
  * 中序遍历
  */
@@ -21,6 +43,34 @@ var inorderTraversal = function (root) {
         cur = cur.right;
     }
 
+    return res;
+};
+
+/**
+ * 后序遍历
+ */
+var postorderTraversal = function (root) {
+    let ans = [];
+    let res = [];
+    let cur = root;
+    let prev = null;
+
+    while (cur !== null || ans.length) {
+        while (cur !== null) {
+            ans.push(cur);
+            cur = cur.left;
+        }
+        cur = ans.pop();
+        if (cur.right == null || cur.right === prev) {
+            res.push(cur.val);
+            prev = cur;
+            cur = null;
+        }
+        else {
+            ans.push(cur);
+            cur = cur.right;
+        }
+    }
     return res;
 };
 

@@ -1,6 +1,7 @@
 /**
  * @file 接雨水 双指针做法
  * @author linyuhan
+ * @description https://leetcode.cn/problems/trapping-rain-water/
  */
 
 var trap = function(height) {

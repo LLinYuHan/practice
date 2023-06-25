@@ -87,3 +87,38 @@ var reverseBetween = function (head, left, right) {
 
     return dummyNode.next;
 };
+
+var reverseKGroup = function (head, k) {
+    let myReverse = (head, tail) => {
+        let pre = tail.next;
+        let p = head;
+        while (pre !== tail) {
+            const next = p.next;
+            p.next = pre;
+            pre = p;
+            p = next;
+        }
+        return [tail, head];
+    };
+
+    const hair = new ListNode(0);
+    hair.next = head;
+    let pre = hair;
+
+    while (head) {
+        let tail = pre;
+        for (let i = 0; i < k; i++) {
+            tail = tail.next;
+            if (!tail) {
+                return hair.next;
+            }
+        }
+        const next = tail.next;
+        [head, tail] = myReverse(head, tail);
+        pre.next = head;
+        tail.next = next;
+        pre = tail;
+        head = tail.next;
+    }
+    return hair.next;
+}
