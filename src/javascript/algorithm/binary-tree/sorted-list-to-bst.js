@@ -12,7 +12,7 @@ const sortedListToBST = (head) => {
             return null;
         }
 
-        const mid = (start + end) / 2;
+        const mid = Math.floor((start + end) / 2);
         const left = buildBST(start, mid - 1);
         const root = new TreeNode(h.val);
         h = h.next;

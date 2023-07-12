@@ -129,3 +129,24 @@ var levelOrder = function (root) {
     }
     return res;
 }
+
+/**
+ * N 字形变换
+ * @param {string} s
+ * @param {number} numRows
+ * @return {string}
+ */
+var convert = function (s, numRows) {
+    if (numRows < 2) return s;
+    let ans = [];
+    let i = 0, flag = -1;
+    for (let element of s) {
+        ans[i] = ans[i] ? ans[i] += element : element;
+        if (i === 0 || i === numRows - 1) {
+            flag = -flag;
+        }
+        i += flag;
+    }
+
+    return ans.join('');
+};
