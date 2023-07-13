@@ -121,4 +121,34 @@ var reverseKGroup = function (head, k) {
         head = tail.next;
     }
     return hair.next;
-}
+};
+
+var rotate = function (matrix) {
+    const n = matrix.length;
+    // 水平翻转
+    for (let i = 0; i < Math.floor(n / 2); i++) {
+        for (let j = 0; j < n; j++) {
+            [matrix[i][j], matrix[n - i - 1][j]] = [matrix[n - i - 1][j], matrix[i][j]];
+        }
+    }
+    // 主对角线翻转
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < i; j++) {
+            [matrix[i][j], matrix[j][i]] = [matrix[j][i], matrix[i][j]];
+        }
+    }
+};
+
+var groupAnagrams = function (strs) {
+    const map = new Map();
+    for (let str of strs) {
+        let array = Array.from(str);
+        array.sort();
+        let key = array.toString();
+        let list = map.get(key) ? map.get(key) : new Array();
+        list.push(str);
+        map.set(key, list);
+    }
+    return Array.from(map.values());
+};
+
