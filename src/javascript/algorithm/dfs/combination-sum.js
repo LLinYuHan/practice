@@ -46,3 +46,38 @@ function combinationSum2(candidates, target) {
     dfs(0, 0);
     return ans;
 }
+
+function combine(n, k) {
+    const ans = [];
+    const dfs = (cur, n, k, temp) => {
+        if (temp.length + (n - cur + 1) < k) {
+            return;
+        }
+        if (temp.length === k) {
+            ans.push(temp);
+            return;
+        }
+        dfs(cur + 1, n, k, [...temp, cur]);
+        dfs(cur + 1, n, k, temp);
+    };
+    dfs(1, n, k, []);
+    return ans;
+}
+
+function combine(n, k) {
+    const ans = [];
+    const dfs = (n, k, temp, index) => {
+        if (temp.length === k) {
+            ans.push(temp);
+            return;
+        }
+
+        for (let i = index; i <= n; i++) {
+            temp.push(i);
+            dfs(n, k, temp, i + 1);
+            temp.pop();
+        }
+    };
+    dfs(n, k, [], 1);
+    return ans;
+}
