@@ -3,6 +3,11 @@
  * @author linyuhan
  */
 
+function ListNode(val, next) {
+    this.val = (val === undefined ? 0 : val);
+    this.next = (next === undefined ? null : next);
+}
+
 /**
  * 递归方法
  * 1. 终止条件 head 为 null 或 head 的 next 节点为 null
@@ -150,5 +155,33 @@ var groupAnagrams = function (strs) {
         map.set(key, list);
     }
     return Array.from(map.values());
+};
+
+/**
+ * 反转字符串
+ * @param {string} s
+ * @param {number} k
+ * @return {string}
+ */
+var reverseStr = function(s, k) {
+    let len = s.length;
+
+    const arr = Array.from(s);
+
+    const reverse = (arr, left, right) => {
+        while (left < right) {
+            let temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+    };
+
+    for (let i = 0; i < len; i += 2 * k) {
+        reverse(arr, i, Math.min(i + k, len) - 1);
+    }
+
+    return arr.join('');
 };
 
