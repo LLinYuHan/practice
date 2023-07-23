@@ -3,5 +3,5 @@
 Frontend private practice;
 
 - JavaScript
-- css
-- html
+- Css
+- Html
