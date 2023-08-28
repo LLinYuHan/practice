@@ -1,3 +1,9 @@
+/**
+ * 排序链表
+ *
+ * @param {Node} head - 链表的头结点
+ * @returns {Node} - 排序后的链表的头结点
+ */
 function sortList(head) {
     if (!head || !head.next) {
         return head;
