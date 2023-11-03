@@ -18,6 +18,32 @@ function combinationSum(candidates, target) {
     return ans;
 }
 
+function combinationSum(candidates, target) {
+    const ans = [];
+    const path = [];
+
+    const dfs = (start, sum) => {
+        if (target === sum) {
+            ans.push([...path]);
+            return;
+        }
+        for (let i = start, len = candidates.length; i < len; i++) {
+            if (candidates[i] + sum > target) {
+                break;
+            }
+            path.push(candidates[i]);
+            sum += candidates[i];
+            dfs(i, sum);
+            sum -= candidates[i];
+            path.pop();
+        }
+    };
+
+    candidates.sort((a, b) => a - b);
+    dfs(0, 0);
+    return ans;
+}
+
 function combinationSum2(candidates, target) {
     const ans = [];
     const tmpPath = [];
