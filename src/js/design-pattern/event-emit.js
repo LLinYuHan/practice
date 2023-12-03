@@ -26,12 +26,17 @@ class EventEmit {
 
     // 关闭监听
     off(eventName, listener) {
-        const listeners = this.events[eventName];
-        if (listeners) {
-            const index = listeners.indexOf(listener);
-            if (index > -1) {
-                listeners.splice(index, 1);
-            }
+        if (this.events[eventName]) {
+            this.events[eventName] = this.events[eventName].filter(item => item !== listener);
         }
+    }
+
+    // 监听一次
+    once(eventName, listener) {
+        const onceListener = (...args) => {
+            listener(...args);
+            this.off(eventName, onceListener);
+        };
+        this.on(eventName, onceListener);
     }
 }
